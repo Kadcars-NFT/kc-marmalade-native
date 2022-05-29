@@ -1,0 +1,6 @@
+(env-keys "local-admin")
+(env-keys "local-admin")
+
+(begin-tx)
+(load "kadcars-kip-1337-as-mod.pact")
+(commit-tx)
