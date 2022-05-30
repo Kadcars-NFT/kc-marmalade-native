@@ -1,12 +1,13 @@
+(define-keyset 'kadcars-nft-collection-keyset (read-keyset "kadcars-nft-collection-keyset"))
+
 (module kadcars-nft-collection "kadcars-nft-collection-keyset" "A kadena kars NFT project"
 
 ;; ------ Checkout @KadCarsNFT On Twitter for more! or visit us on our beta  ------
 ;; ------ https://kadcarsnft.app.runonflux.io/                               ------
 
-
     ;;;;;;;;;;;; INIT STATE ;;;;;;;;;;;;
     (defconst ADMIN_ADDRESS "k:ccf45d4b9e7a05b1f8ae03e362fac9502610d239191a3215774c5251a662c1eb")
-    (defconst ADMIN_KEYSET (read-keyset 'kadcars-nft-collection-keyset))
+    (defconst ADMIN_KEYSET (read-keyset "kadcars-nft-collection-keyset"))
     (defconst K1_ACCELERATION_ZTH 3.3)
     (defconst K1_HORSE_POWER_EQUIV 890)
     (defconst K1_TOP_SPEED_KMPH 300)
@@ -69,12 +70,12 @@
     (deftable price:{price-schema})
     (deftable nfts:{nft-schema})
     (deftable counts:{counts-schema})
+
     ;;;;;;;;;;;; ACCESS CONTROL ;;;;;;;;;;;;
     (defcap PRIVATE ()
         @doc "can only be called from a private context"
         true
     )
-
 
     (defcap WL(account:string)
         @doc "Verified account is allow listed for mint"
@@ -141,16 +142,15 @@
           })
     )
 
-    (defun manufacture(owner-address:string car-model:string number:integer )
+    (defun manufacture (owner-address:string car-model:string number:integer )
         @doc "Manufactures a new call"
         (enforce (= (car-model "K1")) "The Car model is not being manufactured right now!")
 
         (enforce (= number 1) "mint only 1 for now")
-        (let(
-            (total_k1_cars (get-count K1_TOTAL_COUNT_KEY))
-
-            )
-        (enforce (<= (+ total_k1_cars number) K1_MAX_COUNT) "CANNOT PRODUCE ANY MORE CARS")
+        (let (
+                 (total_k1_cars (get-count K1_TOTAL_COUNT_KEY))
+             )
+            (enforce (<= (+ total_k1_cars number) K1_MAX_COUNT) "CANNOT PRODUCE ANY MORE CARS")
         )
     )
 
@@ -158,8 +158,7 @@
         @doc "Manufactures a new K1 model car"
         (enforce (= number 1) "mint only 1 for now")
         (let (
-                (total_k1_cars (get-count K1_TOTAL_COUNT_KEY))
-
+              (total_k1_cars (get-count K1_TOTAL_COUNT_KEY))
             )
             (enforce (<= (+ total_k1_cars number) K1_MAX_COUNT) "CANNOT PRODUCE ANY MORE CARS")
         )
@@ -193,11 +192,6 @@
             )
         )
     )
-
-
-
-
-
 
     (defun initialize ()
         @doc "Initialize state on first time it's loaded "

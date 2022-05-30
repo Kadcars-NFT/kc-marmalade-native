@@ -1,0 +1,30 @@
+(env-data
+  {
+    "kadcars-nft-collection-keyset": {
+        "keys": [
+            "ccf45d4b9e7a05b1f8ae03e362fac9502610d239191a3215774c5251a662c1eb"
+        ],
+        "pred": "keys-all"
+    }
+}
+)
+;; set the env keys
+; (env-keys ["k:ccf45d4b9e7a05b1f8ae03e362fac9502610d239191a3215774c5251a662c1eb"])
+(env-keys ["ccf45d4b9e7a05b1f8ae03e362fac9502610d239191a3215774c5251a662c1eb"])
+
+;; load the kadcars NFT collection module
+(begin-tx)
+(load "coin.pact")
+(load "kadcars-nft-collection.pact")
+(commit-tx)
+
+;; begin transaction to use module to begin making function calls
+; (begin-tx)
+;
+; ;; use the kadcars-nft-collection module
+; (use kadcars-nft-collection)
+;
+; ;; call
+; (manufacture "k:14aa34113242b34b6e61295c1eea362ba028c00b6bd07ed10f390900fcaf2b0" "K1" 1)
+;
+; (commit-tx)
