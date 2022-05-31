@@ -1,6 +1,7 @@
 (define-keyset 'kadcars-nft-collection-keyset (read-keyset "kadcars-nft-collection-keyset"))
 
-(module kadcars-nft-collection "kadcars-nft-collection-keyset" "A kadena kars NFT project"
+(module kadcars-nft-collection "kadcars-nft-collection-keyset"
+  "A kadena kars NFT project"
 
 ;; ------ Checkout @KadCarsNFT On Twitter for more! or visit us on our beta  ------
 ;; ------ https://kadcarsnft.app.runonflux.io/                               ------
@@ -92,9 +93,9 @@
     (defcap ACCOUNT_GUARD(account:string)
         @doc "Verifies account meets format and belongs to caller"
         (enforce (= "k:" (take 2 account)) "For security, only support k: accounts")
-        (enforce-guard
-            (at "guard" (coin.details account))
-        )
+        ; (enforce-guard
+        ;     (at "guard" (coin.details account))
+        ; )
     )
 
     (defcap OWNER (account:string nft-id:string)
@@ -207,12 +208,12 @@
         (require-capability (PRIVATE))
         (+ (+ (curr-chain-id) ":") (int-to-str 10 (get-count K1_TOTAL_COUNT_KEY)))
     )
-
+    ;
     (defun curr-chain-id ()
         @doc "Current chain id"
         (at "chain-id" (chain-data))
     )
-
+    ;
     (defun increase-count(key:string)
         @doc "Increases count of a key in a table by 1"
         (require-capability (PRIVATE))
@@ -246,7 +247,7 @@
         @doc "Returns all the ids"
         (keys nfts)
     )
-
+    ;
     (defun get-price()
         (at "price" (read price K1_PRICE_KEY ["price"]))
     )
@@ -256,13 +257,13 @@
         @doc "Gets count for key"
         (at "count" (read counts key ['count]))
     )
-
+    ;
     (defun get-owner (nft-id:string)
         @doc "Gets the owner of an NFT"
         ; This returns the owner-address field by reading it from the table
         (at "owner-address" (read nfts nft-id ['owner-address] ))
     )
-
+    ;
     (defun get-ids-for-owner (owner-address:string)
         @doc "Returns all KadCar Ids owned by owner"
         (select nfts ["nft-id"] (where "owner-address" (= owner-address)))
@@ -272,18 +273,18 @@
         @doc "Returns all KadCar Ids owned by owner"
         (select nfts (where "owner-address" (= owner-address)))
     )
-
+    ;
     (defun get-kadcar-for-nft-id (nft-id:string)
         @doc "Returns all KadCar Ids owned by owner"
         (select nfts (where "nft-id" (= nft-id)))
     )
-
+    ;
     (defun get-kadcars ()
         @doc "Returns all KadCar Ids owned by owner"
         (select nfts )
     )
-
-
+    ;
+    ;
     ; This is the function to get the image of your NFT
     ; it takes an ID as the input and returns its URL
     ; PS - this is the same function as on the current Marmalade standard :)
@@ -309,6 +310,6 @@
 ; Note if you end up re-deploying the code, you must delete this line or
 ; it will try to recreate the table and fail since it already exists(
 
-;(create-table nfts)
-;  (create-table counts)
- ; (create-table price)
+(create-table nfts)
+(create-table counts)
+(create-table price)

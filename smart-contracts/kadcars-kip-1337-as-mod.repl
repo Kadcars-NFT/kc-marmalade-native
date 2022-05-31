@@ -1,5 +1,5 @@
-(env-keys "local-admin")
-(env-keys "local-admin")
+(env-data { "kadcars": ["kadcars-key"]})
+(env-keys ["kadcars-key"])
 
 (begin-tx)
 (load "kadcars-kip-1337-as-mod.pact")
