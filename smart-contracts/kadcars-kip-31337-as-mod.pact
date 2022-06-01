@@ -1,4 +1,6 @@
-(module kadcars-kip-31337-as-mod 'kadcars "A kadena kars NFT Interoperability POC"
+(define-keyset 'kadcars-keyset (read-keyset "kadcars-keyset"))
+
+(module kadcars-kip-31337-as-mod 'kadcars-keyset "A kadena kars NFT Interoperability POC"
 
 (use kadcars-kip-1337-as-mod)
 ;; ------ Checkout @KadCarsNFT On Twitter for more! or visit us on our beta  ------

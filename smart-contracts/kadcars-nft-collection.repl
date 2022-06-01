@@ -7,13 +7,14 @@
     }
 })
 ;; set the env keys
-; (env-keys ["k:ccf45d4b9e7a05b1f8ae03e362fac9502610d239191a3215774c5251a662c1eb"])
 (env-keys ["test-keyset"])
 
-;; load the kadcars NFT collection module
 (begin-tx)
 (load "fungible-v2.pact")
 (verify "fungible-v2")
+(commit-tx)
+
+(begin-tx)
 (load "coin.pact")
 (verify "coin")
 (commit-tx)

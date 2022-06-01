@@ -1,5 +1,26 @@
-(env-data { "kadcars": ["kadcars-key"]})
-(env-keys ["kadcars-key"])
+(env-data {
+  "kadcars-keyset": {
+    "keys": ["kadcars-admin"],
+    "pred": "keys-all"
+  }
+})
+
+(env-keys ["kadcars-admin"])
+
+(begin-tx)
+(load "fungible-v2.pact")
+(verify "fungible-v2")
+(commit-tx)
+
+(begin-tx)
+(load "coin.pact")
+(verify "coin")
+(commit-tx)
+
+(begin-tx)
+(load "gas-payer-v1.pact")
+(verify "gas-payer-v1")
+(commit-tx)
 
 (begin-tx)
 (load "kadcars-kip-1337-as-mod.pact")

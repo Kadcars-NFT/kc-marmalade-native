@@ -1,5 +1,6 @@
-(define-keyset 'kadcars (read-keyset "kadcars"))
-(module kadcars-kip-1337-as-mod 'kadcars "A kadena kars NFT Interoperability POC"
+(define-keyset 'kadcars-keyset (read-keyset "kadcars-keyset"))
+
+(module kadcars-kip-1337-as-mod 'kadcars-keyset "A kadena kars NFT Interoperability POC"
 
 ;; ------ Checkout @KadCarsNFT On Twitter for more! or visit us on our beta  ------
 ;; ------ https://kadcarsnft.app.runonflux.io/           - O.H               ------
@@ -9,7 +10,7 @@
 
 
     (defconst ADMIN_ADDRESS "k:ccf45d4b9e7a05b1f8ae03e362fac9502610d239191a3215774c5251a662c1eb")
-    (defconst ADMIN_KEYSET (read-keyset 'kadcars))
+    (defconst ADMIN_KEYSET (read-keyset 'kadcars-keyset))
 
 ;;;;;;;;;;;;;;;;;;;  SCEHEMAS  ;;;;;;;;;;;;;;;;;;;
 
